@@ -3,6 +3,7 @@ import ErrorBoundary from './ErrorBoundary';
 import api from '../services/api';
 import { useParams } from 'react-router-dom';
 import styled from '@emotion/styled';
+import { Suspense } from 'react';
 
 const FancyReviewElement = styled.li({
   textAlign: 'start',

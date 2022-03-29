@@ -1,25 +1,61 @@
 import React from 'react';
+import { lazy, Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import HomePage from './components/HomePage';
-import MoviesPage from './components/MoviesPage';
-import MovieDetailsPage from './components/MovieDetailsPage';
-import Cast from './components/Cast';
-import Reviews from './components/Reviews';
+const HomePage = lazy(() => import('./components/HomePage'));
+const MoviesPage = lazy(() => import('./components/MoviesPage'));
+const MovieDetailsPage = lazy(() => import('./components/MovieDetailsPage'));
+const Cast = lazy(() => import('./components/Cast'));
+const Reviews = lazy(() => import('./components/Reviews'));
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route index element={<HomePage />} />
-          <Route path="movies" element={<MoviesPage />}>
-            <Route path=":movieId" element={<MovieDetailsPage />}>
-              <Route path="cast" element={<Cast />} />
-              <Route path="reviews" element={<Reviews />} />
+          <Route
+            index
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <HomePage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="movies"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <MoviesPage />
+              </Suspense>
+            }
+          >
+            <Route
+              path=":movieId"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <MovieDetailsPage />
+                </Suspense>
+              }
+            >
+              <Route
+                path="cast"
+                element={
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <Cast />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="reviews"
+                element={
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <Reviews />
+                  </Suspense>
+                }
+              />
             </Route>
           </Route>
           <Route

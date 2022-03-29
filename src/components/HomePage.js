@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ErrorBoundary from './ErrorBoundary';
 import api from '../services/api';
 import styled from '@emotion/styled';
+import { Suspense } from 'react';
 
 const FancyHome = styled.div({
   float: 'left',

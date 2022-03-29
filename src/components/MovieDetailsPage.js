@@ -66,36 +66,34 @@ export default function MovieDetailsPage() {
   return (
     movieInfo && (
       <div>
-        <ErrorBoundary>
-          <section>
-            <FancyMovie>
-              <FancyImg
-                src={'https://image.tmdb.org/t/p/original/' + movieInfo.poster_path}
-              ></FancyImg>
-              <FancyData>
-                <h2>{movieInfo.title}</h2>
-                <FancyDescription>User score: {movieInfo.vote_average * 10}%</FancyDescription>
-                <h3>Overview</h3>
-                <FancyDescription>{movieInfo.overview}</FancyDescription>
-                <h3>Genres</h3>
-                <FancyList>{genres}</FancyList>
-              </FancyData>
-            </FancyMovie>
-          </section>
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <FancyInformation>
-            <h3>Additional information</h3>
-            <ul>
-              <FancyInfoElement>
-                <Link to={'/movies/' + params.movieId + '/cast'}>Cast</Link>
-              </FancyInfoElement>
-              <FancyInfoElement>
-                <Link to={'/movies/' + params.movieId + '/reviews'}>Reviews</Link>
-              </FancyInfoElement>
-            </ul>
-          </FancyInformation>
-        </ErrorBoundary>
+        <section>
+          <FancyMovie>
+            <FancyImg
+              src={'https://image.tmdb.org/t/p/original/' + movieInfo.poster_path}
+            ></FancyImg>
+            <FancyData>
+              <h2>{movieInfo.title}</h2>
+              <FancyDescription>User score: {movieInfo.vote_average * 10}%</FancyDescription>
+              <h3>Overview</h3>
+              <FancyDescription>{movieInfo.overview}</FancyDescription>
+              <h3>Genres</h3>
+              <FancyList>{genres}</FancyList>
+            </FancyData>
+          </FancyMovie>
+        </section>
+
+        <FancyInformation>
+          <h3>Additional information</h3>
+          <ul>
+            <FancyInfoElement>
+              <Link to={'/movies/' + params.movieId + '/cast'}>Cast</Link>
+            </FancyInfoElement>
+            <FancyInfoElement>
+              <Link to={'/movies/' + params.movieId + '/reviews'}>Reviews</Link>
+            </FancyInfoElement>
+          </ul>
+        </FancyInformation>
+
         <Outlet />
       </div>
     )

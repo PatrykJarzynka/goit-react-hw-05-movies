@@ -26,7 +26,7 @@ const newComponent = Component => {
       ></Component>
     );
   };
-};
+}
 
 const MyNavLink = newComponent(NavLink);
 
